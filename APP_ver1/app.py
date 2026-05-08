@@ -39,7 +39,7 @@ st.set_page_config(page_title="Quant Screener", layout="wide")
 # =========================================================
 # 初期設定
 # =========================================================
-LIST_DIR = "stucklists" # リストのディレクトリ
+LIST_DIR = os.path.join(os.path.dirname(__file__), "stucklists") # リストのディレクトリ
 
 if "conditions" not in st.session_state:
     st.session_state.conditions = []
