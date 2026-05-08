@@ -93,7 +93,8 @@ if st.button("スクリーニングを開始する", type="primary", use_contain
                 df_list = df_list[df_list['テーマ'].str.contains(pattern, na=False)]
     
     if df_list.empty:
-        st.error("解析リストの読み込みに失敗しました。")
+        # 114行目：これに変えるだけで、犯人が「ファイル不在」か「データ0件」か「列名ミス」か分かります
+        st.error(f"詳細: 存在={os.path.exists(file_path)}, 行数={len(df_list)}, 列={list(df_list.columns) if not df_list.empty else 'なし'}")
     else:
         tickers = df_list['コード'].astype(str).tolist()
         progress_bar = st.progress(0)
